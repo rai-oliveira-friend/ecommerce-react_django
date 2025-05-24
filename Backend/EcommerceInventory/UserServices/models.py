@@ -40,8 +40,6 @@ class Users(AbstractUser):
         if not self.domain_user_id and self.id:
             self.domain_user_id=Users.objects.get(id=self.id)
 
-        if not self.pk or Users.objects.filter(pk=self.pk).values('password').first()['password']!=self.password:
-            self.password=make_password(self.password)
         super().save(*args, **kwargs)
     
 
